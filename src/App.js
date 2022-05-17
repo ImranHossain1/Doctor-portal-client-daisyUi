@@ -4,6 +4,8 @@ import About from './Pages/About/About';
 import Appointment from './Pages/Appointment/Appointment/Appointment';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
+import RequireAuth from './Pages/Login/RequireAuth';
+import SignUp from './Pages/Login/SignUp';
 import Navbar from './Pages/Shared/Navbar';
 
 function App() {
@@ -12,9 +14,15 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='appointment' element={<Appointment/>}/>
+        <Route path='appointment' element=
+        {
+          <RequireAuth>
+            <Appointment/>
+          </RequireAuth>
+        }/>
         <Route path='about' element={<About/>}/>
         <Route path='login' element={<Login/>}/>
+        <Route path='signup' element={<SignUp/>}/>
       </Routes>
     </div>
   );
@@ -26,3 +34,6 @@ export default App;
 // ------ ****technology used:****---------//
 // 1. React router v6
 // 2. Tailwind daisyui
+// 3. firebase
+// 4. React Firebase hook
+// 5. React Hook Form
