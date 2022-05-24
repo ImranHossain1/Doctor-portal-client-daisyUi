@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     /* -----------------Firebase Authentications------------------------*/
@@ -15,6 +16,8 @@ const SignUp = () => {
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token]= useToken(user || guser);
     
     const navigate = useNavigate();
     let signInErrorMessage;
@@ -27,11 +30,11 @@ const SignUp = () => {
     const onSubmit =async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        navigate('/appointment');
+        
         console.log('update done')
     };
-    if(user || guser){
-        console.log(user || guser)
+    if(token){
+       navigate('/appointment');
     }
     return (
         <div className='flex justify-center items-center h-screen'>
