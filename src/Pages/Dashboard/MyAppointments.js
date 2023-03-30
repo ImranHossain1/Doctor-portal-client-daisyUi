@@ -10,7 +10,7 @@ const MyAppointments = () => {
     const navigate = useNavigate();
     useEffect(()=>{
         if(user){
-        fetch(`https://mighty-savannah-08199.herokuapp.com/booking?patient=${user.email}`,{
+        fetch(`https://doctor-portal-server-daisyui-production.up.railway.app/booking?patient=${user.email}`,{
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
