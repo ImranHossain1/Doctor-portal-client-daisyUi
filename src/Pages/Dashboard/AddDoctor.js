@@ -12,9 +12,9 @@ const AddDoctor = () => {
     reset,
   } = useForm();
   const { data: services, isLoading } = useQuery("services", () =>
-    fetch(
-      "https://doctor-portal-server-daisyui-production.up.railway.app/service"
-    ).then((res) => res.json())
+    fetch("https://doctors-portal-a3bm.onrender.com/service").then((res) =>
+      res.json()
+    )
   );
   const imgStorageKey = "634b89a1202c978f0b0218c7ddea37ca";
   /*
@@ -46,17 +46,14 @@ const AddDoctor = () => {
             img: img,
           };
           //send to your database
-          fetch(
-            "https://doctor-portal-server-daisyui-production.up.railway.app/doctor",
-            {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-              },
-              body: JSON.stringify(doctor),
-            }
-          )
+          fetch("https://doctors-portal-a3bm.onrender.com/doctor", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(doctor),
+          })
             .then((res) => res.json())
             .then((inserted) => {
               if (inserted.insertedId) {

@@ -14,7 +14,7 @@ const AvailableAppointments = ({ date }) => {
     refetch,
   } = useQuery(["available", formattedDate], () =>
     fetch(
-      `https://doctor-portal-server-daisyui-production.up.railway.app/available?date=${formattedDate}`
+      `https://doctors-portal-a3bm.onrender.com/available?date=${formattedDate}`
     ).then((res) => res.json())
   );
   if (isLoading) {

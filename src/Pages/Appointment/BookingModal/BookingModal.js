@@ -23,16 +23,13 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       patientName: user.displayName,
       phone: e.target.phone.value,
     };
-    fetch(
-      "https://doctor-portal-server-daisyui-production.up.railway.app/booking",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(booking),
-      }
-    )
+    fetch("https://doctors-portal-a3bm.onrender.com/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
